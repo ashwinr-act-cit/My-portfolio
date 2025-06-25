@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashwin R | Embedded Systems & IoT Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #172a45;
+            --accent: #64ffda;
+            --light: #ccd6f6;
+            --lighter: #e6f1ff;
+            --text: #8892b0;
+            --text-light: #a8b2d1;
+            --text-lighter: #ccd6f6;
+            --white: #ffffff;
+            --gray: #8892b0;
+            --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --border-radius: 4px;
+            --shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            --nav-height: 70px;
+        }
+
+        .light-mode {
+            --primary: #f5f7ff;
+            --secondary: #e4e8f7;
+            --accent: #0a192f;
+            --light: #172a45;
+            --lighter: #0a192f;
+            --text: #495670;
+            --text-light: #172a45;
+            --text-lighter: #0a192f;
+            --white: #0a192f;
+            --gray: #8892b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--light);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        h2:after {
+            content: '';
+            display: block;
+            position: relative;
+            width: 50%;
+            height: 1px;
+            background-color: var(--accent);
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            margin-bottom: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .light-mode nav {
+            background-color: rgba(245, 247, 255, 0.85);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 20px;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            color: var(--accent);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero-title {
+            color: var(--lighter);
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .dynamic-text {
+            min-height: 80px;
+            margin-bottom: 30px;
+        }
+
+        .typewriter {
+            color: var(--text-light);
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            font-weight: 400;
+            border-right: 2px solid var(--accent);
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            padding-right: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 15px 28px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .signature {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            opacity: 0.7;
+            transform: rotate(-5deg);
+        }
+
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 3fr 7fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+
+        .about-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .about-img:before {
+            content: '';
+            object-position: right top;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            transform: scale(1.1);
+            z-index: -1;
+        }
+
+        .about-img img {
+            width: 100%;
+            display: block;
+            transition: var(--transition);
+            filter: grayscale(100%);
+        }
+
+        .about-img:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+
+        .about-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-item i {
+            color: var(--accent);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background-color: var(--secondary);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .skill-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .skill-list li:before {
+            content: '▹';
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--secondary);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .project-img {
+            height: 200px;
+            background: linear-gradient(45deg, #64ffda, #0a192f);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            color: var(--light);
+            margin-bottom: 15px;
+        }
+
+        .project-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Achievements & Certifications */
+        .achievements-container, .certifications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .achievement-card, .certification-card {
+            background-color: var(--secondary);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            transition: var(--transition);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card:hover, .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .achievement-card h3, .certification-card h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .certification-card {
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .certification-card .front, .certification-card .back {
+            backface-visibility: hidden;
+            transition: transform 0.6s;
+        }
+
+        .certification-card .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 25px;
+            background: var(--secondary);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .certification-card.flipped .front {
+            transform: rotateY(180deg);
+        }
+
+        .certification-card.flipped .back {
+            transform: rotateY(0deg);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--secondary);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: var(--border-radius);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            z-index: 99;
+        }
+
+        .back-to-top.show {
+            opacity: 0.8;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-img {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background-color: var(--secondary);
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+
+            .signature {
+                display: none;
+            }
+
+            .about-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <div class="logo">Ashwin R</div>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="hero" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-subtitle">Hello, I'm</div>
+            <h1 class="hero-title">Ashwin R</h1>
+            <div class="dynamic-text">
+                <div class="typewriter" id="typewriter"></div>
+            </div>
+            <p>Electronics and Communication Engineering student specializing in IoT systems and embedded technology.</p>
+        </div>
+
+    </div>
+    <div class="signature">Ashwin R</div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="data/ASHWIN2.jpg" alt="Ashwin R">
+            </div>
+            <div class="about-content">
+                <p>I'm an Electronics and Communication Engineering student specializing in bridging hardware and intelligence through IoT systems, embedded tech, and smart innovation.</p>
+                <div class="about-info">
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Chennai Institute of Technology</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-book"></i>
+                        <span>B.E. ECE (Advanced Communication)</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>CGPA: 8.21</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Batch: 2024–2028</span>
+                    </div>
+                </div>
+                <p>My passion lies in creating innovative solutions that connect the physical and digital worlds, leveraging cutting-edge technologies to solve real-world problems.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="skills">
+    <div class="container">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <h3>Embedded Technology</h3>
+                <ul class="skill-list">
+                    <li>Microcontroller Programming</li>
+                    <li>Sensor Integration</li>
+                    <li>PCB Design</li>
+                    <li>Real-time Operating Systems</li>
+                </ul>
+            </div>
+            <div class="skill-card fade-in">
+                <h3>5G Systems</h3>
+                <ul class="skill-list">
+                    <li>Network Architecture</li>
+                    <li>Signal Processing</li>
+                    <li>MIMO Technology</li>
+                    <li>Network Slicing</li>
+                </ul>
+            </div>
+            <div class="skill-card fade-in">
+                <h3>Additive Manufacturing</h3>
+                <ul class="skill-list">
+                    <li>3D Modeling</li>
+                    <li>Prototyping</li>
+                    <li>Material Selection</li>
+                    <li>CAD Design</li>
+                </ul>
+            </div>
+            <div class="skill-card fade-in">
+                <h3>Tools & Languages</h3>
+                <ul class="skill-list">
+                    <li>Proteus, Arduino IDE</li>
+                    <li>Ultimaker Cura</li>
+                    <li>Python, C++, Embedded C</li>
+                    <li>MATLAB, LabVIEW</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects">
+    <div class="container">
+        <h2>Projects & Experience</h2>
+        <div class="projects-container">
+            <div class="project-card fade-in">
+                <div class="project-img"></div>
+                <div class="project-content">
+                    <h3>Smart Seatbelt System</h3>
+                    <p>A safety system using drowsiness and impact detection with integrated IoT capabilities for real-time monitoring and alerts.</p>
+                    <div class="tech-stack">
+                        <span>Embedded C</span>
+                        <span>IoT</span>
+                        <span>Sensors</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-img"></div>
+                <div class="project-content">
+                    <h3>BETSHOW Internship</h3>
+                    <p>Hardware integration for embedded devices focusing on communication protocols and system optimization.</p>
+                    <div class="tech-stack">
+                        <span>Hardware Design</span>
+                        <span>Embedded Systems</span>
+                        <span>Testing</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-img"></div>
+                <div class="project-content">
+                    <h3>5G Network Simulator</h3>
+                    <p>Developed a simulation environment for testing 5G network configurations and performance metrics.</p>
+                    <div class="tech-stack">
+                        <span>MATLAB</span>
+                        <span>Network Simulation</span>
+                        <span>5G</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section -->
+<section id="achievements" class="achievements">
+    <div class="container">
+        <h2>Achievements</h2>
+        <div class="achievements-container">
+            <div class="achievement-card fade-in">
+                <h3>National Hackathon – SVEC</h3>
+                <p>Got Special mention in a national-level hackathon focused on IoT solutions for sustainable energy management.</p>
+            </div>
+            <div class="achievement-card fade-in">
+                <h3>Quiz Competition Winner – CIT</h3>
+                <p>Achieved top position in the annual technical quiz competition at Chennai Institute of Technology.</p>
+            </div>
+            <div class="achievement-card fade-in">
+                <h3>Eco Prototypes Innovation</h3>
+                <p>Applied additive manufacturing techniques to create eco-friendly prototypes for urban farming solutions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certifications Section -->
+<section id="certifications" class="certifications">
+    <div class="container">
+        <h2>Certifications</h2>
+        <div class="certifications-container">
+            <div class="certification-card fade-in" onclick="this.classList.toggle('flipped')">
+                <div class="front">
+                    <h3>CS50x – Harvard University</h3>
+                    <p>Introduction to Computer Science</p>
+                </div>
+                <div class="back">
+                    <p>Comprehensive introduction to the intellectual enterprises of computer science and the art of programming.</p>
+                </div>
+            </div>
+            <div class="certification-card fade-in" onclick="this.classList.toggle('flipped')">
+                <div class="front">
+                    <h3>Cisco: IoT + Networking</h3>
+                    <p>IoT Fundamentals and Networking</p>
+                </div>
+                <div class="back">
+                    <p>Understanding of IoT concepts, networking models, and practical skills for IoT implementation.</p>
+                </div>
+            </div>
+            <div class="certification-card fade-in" onclick="this.classList.toggle('flipped')">
+                <div class="front">
+                    <h3>Infosys: 5G Architecture</h3>
+                    <p>5G Network Design Principles</p>
+                </div>
+                <div class="back">
+                    <p>In-depth knowledge of 5G network architecture, deployment strategies, and service delivery.</p>
+                </div>
+            </div>
+            <div class="certification-card fade-in" onclick="this.classList.toggle('flipped')">
+                <div class="front">
+                    <h3>Maven Silicon: VLSI</h3>
+                    <p>VLSI Design and Verification</p>
+                </div>
+                <div class="back">
+                    <p>Fundamentals of Very Large Scale Integration design flow, verification methodologies, and FPGA implementation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>ashwinr.act2024@citchennai.net</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <div>
+                        <h3>GitHub</h3>
+                        <p>github.com/ashwinr-act-cit</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <div>
+                        <h3>LinkedIn</h3>
+                        <p>linkedin.com/in/ashwinr07</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Ashwin R. All rights reserved.</p>
+        <p>Designed and built with ❤️</p>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<script>
+    // Typewriter effect
+    const typewriter = document.getElementById('typewriter');
+    const texts = [
+        "Embedded Systems | IoT | 5G Enthusiast",
+        "Transforming code into connected solutions...",
+        "Bridging hardware and software innovation"
+    ];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function type() {
+        const currentText = texts[textIndex];
+
+        if (isDeleting) {
+            // Remove characters
+            typewriter.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
+        } else {
+            // Add characters
+            typewriter.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100;
+        }
+
+        // Check if text is complete
+        if (!isDeleting && charIndex === currentText.length) {
+            // Pause at end of text
+            typingSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            // Move to next text
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+            typingSpeed = 500;
+        }
+
+        setTimeout(type, typingSpeed);
+    }
+
+    // Start typing effect
+    setTimeout(type, 1000);
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+
+        if (document.body.classList.contains('light-mode')) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+
+        if (navLinks.classList.contains('active')) {
+            mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
+
+    // Scroll animations
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    function checkFade() {
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (elementTop < windowHeight - 100) {
+                element.classList.add('appear');
+            }
+        });
+    }
+
+    // Initial check
+    checkFade();
+
+    // Listen for scroll events
+    window.addEventListener('scroll', checkFade);
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Resume button
+    const resumeBtn = document.getElementById('resume-btn');
+
+    resumeBtn.addEventListener('click', () => {
+        // In a real implementation, this would link to a PDF file
+        alert('Resume download would start now. In a real implementation, this would link to a PDF file.');
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    });
+</script>
+</body>
+</html>
